@@ -1,0 +1,83 @@
+//This program will draw a car
+
+//Constants
+var centerX = getWidth() / 2;
+var centerY = getHeight() / 2;
+var tireRadius = getWidth() / 9;
+var wheelRadius = getWidth() / 16;
+var lightRadius = getWidth() / 20;
+var windowRadius = getWidth() / 5;
+var carWidth = getWidth() / 5 * 3;
+var carHeight = getWidth() / 5 * 3 / 4;
+var carColour = Color.blue;
+var windowColour = Color.cyan;
+var tireColour = Color.black;
+var yellow = new Color(255, 220, 0);
+
+function start() {
+    //Bottom layer of the car, as well as the lights at the front and back
+    var bottomLayer = new Line(15, 320, 341, 320);
+    bottomLayer.setLineWidth(25);
+    bottomLayer.setColor(Color.gray);
+    var frontLight = new Circle(lightRadius);
+    frontLight.setPosition(0 + centerX / 8, centerY + centerY / 5);
+    frontLight.setColor(yellow);
+    var backLight = new Circle(lightRadius);
+    backLight.setPosition(getWidth() - centerX / 17 * 6, centerY + centerY / 5);
+    backLight.setColor(Color.red);
+
+    //Middle, top, front, and back of the car (the overall shape)
+    var car = new Rectangle(carWidth, carHeight);
+    car.setPosition(centerX / 5 * 2, centerY + 15);
+    car.setColor(carColour);
+    var topCar = new Arc(carWidth / 2, 0, 180, 0);
+    topCar.setPosition(centerX, centerY + 30);
+    topCar.setColor(carColour);
+    var frontCar = new Arc(carHeight / 3 * 4, 90, 180, 0);
+    frontCar.setPosition(centerX - carWidth / 2 + 15, centerY + carHeight + 15);
+    frontCar.setColor(carColour);
+    var backCar = new Arc(carHeight * 7 / 3, 0, 90, 0);
+    backCar.setPosition(centerX, centerY + carHeight + 15);
+    backCar.setColor(carColour);
+    
+    //Windows and door handle of the car
+    var frontWindow = new Arc(carWidth / 10 * 3 - 2, 90, 180, 0);
+    frontWindow.setPosition(centerX - 10, centerY);
+    frontWindow.setColor(windowColour);
+    var backWindow = new Arc(carWidth / 11 * 3, 0, 90, 0);
+    backWindow.setPosition(centerX + 20, centerY);
+    backWindow.setColor(windowColour);
+    var doorHandle = new Rectangle(30, 10);
+    doorHandle.setPosition(centerX - 45, centerY + 10);
+    doorHandle.setColor(Color.black);
+    
+    //Front and back tires of the car
+    var frontTire = new Circle(tireRadius);
+    frontTire.setPosition(centerX / 25 * 10, centerY / 5 * 7);
+    frontTire.setColor(tireColour);
+    var frontWheel = new Circle(wheelRadius);
+    frontWheel.setPosition(centerX / 25 * 10, centerY / 5 * 7);
+    frontWheel.setColor(Color.gray);
+    var backTire = new Circle(tireRadius);
+    backTire.setPosition(getWidth() - centerX / 17 * 10, centerY / 5 * 7);
+    backTire.setColor(tireColour);
+    var backWheel = new Circle(wheelRadius);
+    backWheel.setPosition(getWidth() - centerX / 17 * 10, centerY / 5 * 7);
+    backWheel.setColor(Color.gray);
+
+    //Calling variables, creates the image
+    add(bottomLayer);
+    add(car);
+    add(frontLight);
+    add(backLight);
+    add(topCar);
+    add(frontCar);
+    add(backCar);
+    add(frontWindow);
+    add(backWindow);
+    add(doorHandle);
+    add(frontTire);
+    add(frontWheel);
+    add(backTire);
+    add(backWheel);
+}
